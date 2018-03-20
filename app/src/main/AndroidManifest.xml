@@ -19,8 +19,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DialogActivity"
-            android:theme="@style/Theme.AppCompat.Light.Dialog">
-        </activity>
+        <activity
+            android:name=".DialogActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".TabsEnvio"
+            android:label="@string/title_activity_tabs_envio"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name=".MetodoReclamoActivity"
+            android:label="@string/title_activity_metodo_reclamo"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"></activity>
     </application>
+
 </manifest>

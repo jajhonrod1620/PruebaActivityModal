@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -20,9 +23,10 @@ import java.util.ArrayList;
  */
 public class EnvioDomicilioFragment extends Fragment {
 
-    private DatabaseReference mDatabase;
-    private ArrayList<String> arrayList = new ArrayList<>();
-    private ArrayAdapter<String> adapter;
+    DatabaseReference mDatabase;
+    ListView lv;
+    ArrayList<String> arrayList = new ArrayList<>();
+    ArrayAdapter<String> adapter;
 
 
     public EnvioDomicilioFragment() {
@@ -35,11 +39,37 @@ public class EnvioDomicilioFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View vistaDirecciones =  inflater.inflate(R.layout.fragment_envio_domicilio, container, false);
-        /*ListView lv = (ListView)getActivity().findViewById(R.id.lv_direcciones);
-        lv.setAdapter();
-        mDatabase = FirebaseDatabase.getInstance().getReference();*/
+        ListView lv = (ListView)vistaDirecciones.findViewById(R.id.lv_direcciones);
+        adapter= new ArrayAdapter<String>(getActivity(), android.R.layout.simple_dropdown_item_1line, arrayList);
+        lv.setAdapter(adapter);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                arrayList.add(dataSnapshot.getValue(String.class));
+                adapter.notifyDataSetChanged();
+            }
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
+            }
 
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                arrayList.remove(dataSnapshot.getValue(String.class));
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         //adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
         return vistaDirecciones;
     }

@@ -5,8 +5,6 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="envio_domicilio">A Domicilio %1$d</string>
     <string name="recoge_tienda">Recoger en almacen %1$d</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_metodo_reclamo">MetodoReclamoActivity</string>
     <string name="tab_envio_domicilio">A Domicilio</string>
